@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">Button</button>
+  </body>
+</html>
+<script>
+  //   let nested = {
+  //     data: {
+  //       function: () => {
+  //         console.log(this);
+  //       },
+  //     },
+  //     function: function () {
+  //       console.log(this);
+  //     },
+  //   };
+  //   nested.function();
+  //   nested.data.function();
+
+  //   let obj = {
+  //     function: function () {
+  //       const inner = () => {
+  //         console.log(this);
+  //       };
+  //       inner();
+  //     },
+  //   };
+
+  //   obj.function(); //{obj}
+
+  let newObj = {
+    data: {
+      print: function () {
+        console.log(this); // 👉 data
+      },
+    },
+  };
+
+  newObj.data.print(); // ✅ **data**
+
+  //   function test() {
+  //     console.log(this); // undefined in strict mode
+  //   }
+
+  //   console.log(this); //{window}
+
+  //   var obj = {
+  //     data: {
+  //       function: () => {
+  //         // Arrow function does not have its own 'this',
+  //         // it inherits from the outer scope
+  //         console.log(this);
+  //       },
+  //     },
+  //   };
+  //   obj.data.function();
+
+  //   function test() {
+  //     this.name = "Kim"; //Contructor 안에 쓰면 새 생성되는 object(인스턴스)를 지칭
+  //   }
+
+  //   let object = new test(); //test()로 생성되는 새 인스턴스
+
+  //   document.getElementById("btn").addEventListener("click", function (e) {
+  //     let arr = [1, 2, 3];
+  //     arr.forEach(function (e) {
+  //       console.log(this); // 'this' refers to the global object or undefined in strict mode
+  //     });
+  //   });
+
+  //   let newObj = {
+  //     names: ["Lee", "Park", "Choi"],
+  //     function: function () {
+  //       console.log(this); // 'this' refers to newObj
+  //       newObj.names.forEach(function (e) {
+  //         //console.log(this); // 'this' refers to the global object or undefined in strict mode
+  //         //obj 내부의 function이 아니라 그냥 일반함수 forEach일 뿐이니까
+  //       });
+  //     },
+  //   };
+
+  //   let newnewObj = {
+  //     names: ["Lee", "Park", "Choi"],
+  //     function: function () {
+  //       newObj.names.forEach(() => {
+  //         console.log(this);
+  //         // Arrow function does not have its own 'this',
+  //         // it inherits from the outer scope
+  //         //상위의 this값을 그대로 inherit
+  //       });
+  //     },
+  //   };
+  //   newnewObj.function();
+</script>

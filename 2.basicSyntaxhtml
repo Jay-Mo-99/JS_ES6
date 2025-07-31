@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="hello">Hello World</p>
+    <div>
+      <button id="color-btn">Toggle Color</button>
+    </div>
+    <div>
+      <input type="text" id="input-text" class="bg-gray-200" />
+      <button id="input-btn" class="bg-gray-400 text-white">Change Text</button>
+    </div>
+  </body>
+  <script>
+    let userObj = { id: 1, name: "Lee", age: 20 };
+    let userArr = ["Park", "Choi"];
+    var name = "kim";
+    var age = 20;
+    let inputText = NaN;
+
+    function changeBtn() {
+      document
+        .getElementById("input-btn")
+        .addEventListener("click", changeText);
+    }
+
+    function changeText() {
+      inputText = document.getElementById("input-text").value;
+      document.getElementById("hello").innerHTML = inputText;
+      document.getElementById("input-text").value = "";
+    }
+
+    changeBtn();
+
+    function changeColor(param) {
+      document
+        .getElementById("color-btn")
+        .addEventListener("click", function () {
+          document.getElementById("hello").classList.toggle(param);
+        });
+    }
+    changeColor("text-purple-500");
+
+    [1, 2, 3, 4].forEach((e) => {
+      console.log(e);
+    });
+  </script>
+</html>
