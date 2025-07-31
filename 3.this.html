@@ -11,6 +11,14 @@
   </body>
 </html>
 <script>
+  var obj = {
+    data: {
+      function: function () {
+        console.log(this);
+      },
+    },
+  };
+  obj.data.function();
   //   let nested = {
   //     data: {
   //       function: () => {
