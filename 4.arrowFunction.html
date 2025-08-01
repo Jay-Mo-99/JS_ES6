@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+  </head>
+  <body class="m-3 text-white">
+    <button id="btn" class="bg-red-200 p-3">Button</button>
+    <button id="btn-time" class="bg-orange-200 p-3">Timeout</button>
+  </body>
+  <script>
+    let human = {
+      name: "Jay",
+      sayHi: function () {
+        console.log("Hi, My name is " + this.name);
+      },
+    };
+    human.sayHi();
+
+    let object = {
+      data: [1, 2, 3, 4, 5],
+      add: function () {
+        let result = 0;
+        this.data.forEach((d) => {
+          result += d;
+        });
+        console.log(result);
+      },
+    };
+    object.add();
+
+    function method() {
+      console.log("HI");
+    }
+    setTimeout(method, 1000);
+
+    document.getElementById("btn-time").addEventListener("click", function () {
+      setTimeout(function () {
+        console.log(this.innerHTML);
+      }, 1000);
+    });
+  </script>
+</html>
