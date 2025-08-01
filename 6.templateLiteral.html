@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // let name = "Jay";
+    // let name2 = "Amy";
+
+    // let htmlTamplet = `<div>${name}</div>`;
+
+    // function dissolution(strings, var1, var2) {
+    //   console.log(strings[1] + var1 + " and " + var2);
+    // }
+
+    // dissolution`Hi, My name is ${name}. They are ${name2}`;
+
+    let pants = 0;
+    let socks = 100;
+
+    function dissolution(str, var1, var2) {
+      if (var1 == 0) {
+        console.log("Pants are sold out", str[1] + var2);
+      } else {
+        console.log(str[0], var1, str[1], var2);
+      }
+    }
+    dissolution`Pants: ${pants} Socks:${socks}`;
+  </script>
+</html>
