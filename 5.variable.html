@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="display: none">모달창0</div>
+    <div style="display: none">모달창1</div>
+    <div style="display: none">모달창2</div>
+
+    <button>버튼0</button>
+    <button>버튼1</button>
+    <button>버튼2</button>
+  </body>
+  <script>
+    var 버튼들 = document.querySelectorAll("button");
+    var 모달창들 = document.querySelectorAll("div");
+    for (let i = 0; i < 3; i++) {
+      버튼들[i].addEventListener("click", function () {
+        모달창들[i].style.display = "block";
+      });
+    }
+
+    // console.log(color); //undefined
+    // var color = "Red";
+    // console.log(color); //Red
+
+    // console.log(country); //ERROR
+    // let country = "CAD";
+    // console.log(country);
+    // var age = 18; //
+    // window.name = "Kim"; //global variable
+    // window.method;
+    // console.log(name);
+
+    // let a = 1;
+    // var b = 2;
+    // window.a = 3;
+    // window.b = 4;
+
+    // console.log(a + b);
+
+    // method();
+    // function method() {
+    //   console.log(sayHi);
+    //   let sayHi = "Hello, JS";
+    // }
+
+    // for (var i = 1; i < 6; i++) {
+    //   setTimeout(function () {
+    //     console.log(i);
+    //   }, 1000 * i);
+    // }
+  </script>
+</html>
