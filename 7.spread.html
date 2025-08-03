@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // let arr = ["red", "orange", "yellow", "green"];
+    // console.log(...arr);
+
+    // let str = "hello";
+    // console.log(...str);
+
+    // let a = [1, 2, 3];
+    // let b = [4, 5];
+    // let c = [...a];
+
+    // let a = [1, 2, 3];
+    // let b = [...a];
+    // a[0] = 100;
+    // console.log(a);
+    // console.log(b);
+
+    // let obj = { a: 1, b: 2 };
+    // let obj2 = { ...obj, c: 3 };
+    // console.log(obj2);
+
+    function add(a, b, c) {
+      console.log(a + b + c);
+    }
+    let arr = [1, 2, 3];
+    add(...arr);
+
+    let user = {
+      sayHi: function () {
+        console.log("Hi " + this.name);
+      },
+    };
+
+    let user2 = {
+      name: "Jay",
+    };
+
+    user.sayHi();
+    user.sayHi.apply(user2, [1, 2]);
+    user.sayHi.call(user2, 1);
+  </script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // const people = [
+    //   { id: 1, name: "Jay", address: { city: "Toronto", zip: "A1A1A1" } },
+    //   { id: 2, name: "Amy", address: { city: "Waterloo", zip: "N2L3G1" } },
+    //   { id: 3, name: "Tom", address: { city: "Guelph", zip: "G1G1G1" } },
+    // ];
+
+    // const updatedPeople = people.map((p) => {
+    //   return p.id === 2
+    //     ? { ...p, name: "Alex", address: { ...p.address, city: "Ottawa" } }
+    //     : p;
+    // });
+    // console.log(people[1].address.city);
+    // console.log(updatedPeople);
+
+    const users = [
+      { id: 1, name: "Amy" },
+      { id: 2, name: "Betty" },
+    ];
+
+    const updated = users.map((u) => {
+      return u.id === 1 ? { ...u, name: "Jay" } : u;
+    });
+    console.log(updated);
+
+    const updated = {
+      ...user,
+      address: { ...user.address, city: "Ottawa" },
+    };
+  </script>
+</html>
