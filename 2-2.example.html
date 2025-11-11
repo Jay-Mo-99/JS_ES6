@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  //1
+  //['김','밥',1,2,3]
+
+  //2
+  //(틀림 => 해석 필요)
+
+  //3
+  //9 (맞추긴 했지만 오답정리필요...return 10과 출력 9를 색갈림)
+
+  //4
+  //NaN (오답정리... default parameters의 발동. )
+
+  //5
+  function 어레이(...params) {
+    return params;
+  }
+
+  var newArray = 어레이(1, 2, 3, 4, 5, 45454545);
+  console.log(newArray);
+
+  //6
+  var numbers = [2, 3, 4, 5, 6, 1, 3, 2, 5, 5, 4, 6, 7];
+
+  console.log(Math.max(...numbers)); //spread operators를 배열 앞에 붙이면 각 element  해체
+
+  //7
+  function 정렬(params) {
+    //내풀이
+    // newArr = [];
+    // for (i = 0; i < params[0].length; i++) {
+    //   newArr[i] = params[0][i];
+    // }
+    // console.log(newArr.sort());
+
+    //강사풀이
+    console.log([...params].sort());
+  }
+
+  정렬("bear");
+
+  //8
+  function count(params) {
+    //내풀이
+    // - count의 paramaeter을 ...params로 둠
+    // - google 검색으로 dictionary 함수 보고 짬
+    //
+    // let dict = new Object();
+    // dict[params[0][0]] = 0; //{a: 0}
+    // for (i = 0; i < params[0].length; i++) {
+    //   if (params[0][i] in dict) {
+    //     dict[params[0][i]] += 1;
+    //   } else {
+    //     dict[params[0][i]] = 1;
+    //   }
+    // }
+    // const sortedKeys = Object.keys(dict).sort();
+    // let sortedDict = {};
+    // sortedKeys.forEach((key) => {
+    //   sortedDict[key] = dict[key];
+    // });
+    // console.log(sortedDict);
+
+    //강사풀이
+    // -couunt의 parameter은 params
+    let result = {};
+    [...params].sort().forEach(function (a) {
+      //만약에 결과에 a가 있으면 +1 해주고 없으면 a:1 넣어라
+      if (result[a] > 0) {
+        result[a] += 1;
+      } else {
+        result[a] = 1;
+      }
+    });
+    console.log(result);
+  }
+  count("aacbbb");
+</script>
