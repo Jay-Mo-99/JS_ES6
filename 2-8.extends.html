@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    class GrandParents {
+      constructor(name, engName) {
+        this.lastName = "Kim";
+        this.firstName = name;
+        this.engName = engName;
+      }
+
+      sayHi() {
+        console.log(
+          "Hi, my name is " +
+            this.firstName +
+            ", and my english name is " +
+            this.engName
+        );
+      }
+    }
+
+    class Parents extends GrandParents {
+      constructor(name, engName) {
+        //this.age = 45;//이미 extends로 상속받았다면 this 함부로 사용 x
+        //super()
+        // - 부모님의 Constructor을 다 가져오고 이후 this 사용 가능
+        //super()의 용도
+        // 1. 부모 constructor 가 필요한 parameter은 super()로 전달해주기
+        super(name, engName);
+        this.region = "Seoul";
+      }
+      sayHi() {
+        console.log("Hi, I'm parents.");
+        super.sayHi(); //2. 부모 클래스의 prototype을 가져와라
+      }
+    }
+
+    let grandParents1 = new GrandParents("Dukman", "Will");
+    let parents1 = new Parents("Youngsoo", "Will Junior");
+  </script>
+</html>
