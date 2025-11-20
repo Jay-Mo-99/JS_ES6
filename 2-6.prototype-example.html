@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function Student(name, age) {
+      this.name = name;
+      this.age = age;
+      // this.sayHi = function () {
+      //   console.log("Hi, My name is " + this.name);
+      // };
+    }
+
+    Student.prototype.sayHi = function () {
+      console.log("Hi, My name is " + this.name);
+    };
+
+    let student1 = new Student("Kim", 20);
+    let student2 = new Student("Park", 21);
+    let student3 = new Student("Lee", 22);
+
+    //내풀이
+    Array.prototype.remove3 = function (target) {
+      let newArr = [];
+      this.forEach((e, i) => {
+        if (e !== target) {
+          newArr.push(e);
+        }
+      });
+      this.length = 0;
+      this.push(...newArr);
+      console.log(this);
+    };
+
+    //강사풀이
+    // Array.prototype.remove3 = function () {
+    //   for (let i = 0; i < this.length; i++) {
+    //     if (this[i] === 3) {
+    //       this.splice(i, 1);
+    //     }
+    //   }
+    // };
+
+    var arr = [1, 2, 3, 4];
+    let arr2 = [3, 3, 3, 3, 5, 3, 3, 3];
+    arr.remove3(1);
+    arr2.remove3(3);
+  </script>
+</html>
