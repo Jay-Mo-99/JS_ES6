@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // //Traditional
+    // let parents = { name: "Kim", age: 60 };
+    // let child = Object.create(parents); //Only define the prototype
+    // let grandChild = Object.create(child);
+    // child.age = 12; //Define the instance value
+
+    class Parents {
+      constructor(name = "Kim") {
+        this.name = name;
+        this.sayHi = function () {
+          console.log("Hi, My name is " + this.name + " from Constructor"); //각 인스턴스가 직접 갖는 함수
+        };
+      }
+      //Parents 내부에 메소드 정의 -> Parents.prototype 에 정의
+      sayThank() {
+        console.log("Thank you! from Prototpye");
+      }
+    }
+    //Parents자체 property
+    //Child에게 상속 불가
+    Parents.race = "Asian";
+    Parents.country = function () {
+      console.log("I am from South Korea");
+    };
+    //Parents prototype
+    //Child에게도 상속 가능
+    Parents.prototype.sayBye = function () {
+      console.log("Say Goodbye from Prototype");
+    };
+    let child = new Parents("Lee");
+    Object.getPrototypeOf(child); //Print the prototype of child
+  </script>
+</html>

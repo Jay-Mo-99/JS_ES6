@@ -31,8 +31,8 @@
           newArr.push(e);
         }
       });
-      this.length = 0;
-      this.push(...newArr);
+      this.length = 0; //this 바인딩은 재할당 불가능, 따라서 length로 초기화
+      this.push(...newArr); //spread operator로 element 복사 및 추가
       console.log(this);
     };
 
