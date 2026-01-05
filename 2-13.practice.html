@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let data = {
+      odd: [],
+      even: [],
+
+      getNum(...params) {
+        for (let e of params) {
+          if (e % 2 === 0) {
+            this.even.push(e);
+          } else {
+            this.odd.push(e);
+          }
+        }
+      },
+
+      arrangeNum() {
+        this.odd.sort((a, b) => a - b);
+        this.even.sort((a, b) => a - b);
+        return { odd: this.odd, even: this.even };
+      },
+    };
+  </script>
+</html>
