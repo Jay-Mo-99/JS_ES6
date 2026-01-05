@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  let people = {
+    name: "Amy",
+    age: 30,
+    //왜 함수를 만들어 object 데이터를 다루는가?
+    //1. object 자료가 복잡할때 접근이 쉬움
+    //2. object 자료 수정 및 검사 용이.(setter에서 parseInt로 정수 자료형으로 통일)
+
+    prevAge() {
+      return this.age - 1;
+    },
+
+    testAge(test) {
+      this.age = parseInt(test);
+    },
+    //데이터를 꺼내쓰는 함수는 get
+    /// - getter은 return 필수
+    /// - getter은 parameter 사용 불가
+    //데이터를 설정하는 함수는 set
+    // - setter은 parameter 필수
+
+    get nextAge() {
+      return this.age + 1;
+    },
+
+    set setAge(newAge) {
+      this.age = parseInt(newAge);
+      //문자열로 들어올수도 있어서 숫자로 변환
+    },
+  };
+
+  //getter와 setter는 함수처럼 호출하지 않고 속성처럼 사용
+  people.testAge("40");
+  people.prevAge();
+  people.setAge = "50";
+  people.nextAge;
+
+  class Parents {
+    constructor() {
+      this.lastName = "Lee";
+      this.age = 40;
+    }
+
+    get nextAge() {
+      return this.age + 1;
+    }
+
+    set setAge(newAge) {
+      this.age = parseInt(newAge);
+    }
+  }
+
+  let parents1 = new Parents();
+
+  parents1.setAge = "100";
+  parents1.nextAge;
+</script>
