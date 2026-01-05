@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  class Puppy {
+    constructor(type, color) {
+      this.type = type;
+      this.color = color;
+    }
+    nextAgeOnlyCat() {
+      if (this instanceof Cat) {
+        return this.age++;
+      } else {
+        console.log("I'm not a cat.");
+      }
+    }
+  }
+
+  let puppy1 = new Puppy("Maltese", "white");
+  let puppy2 = new Puppy("Poodle", "brown");
+
+  class Cat extends Puppy {
+    constructor(type, color, age) {
+      super(type, color); //부모의 constructor을 호출 후 자식 인스턴스 생성
+      this.age = age;
+    }
+  }
+
+  let cat1 = new Cat("Persian", "gray", 1);
+  puppy1.nextAgeOnlyCat();
+  cat1.nextAgeOnlyCat();
+</script>

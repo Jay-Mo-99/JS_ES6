@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    class Unit {
+      constructor(attack = 5, hp = 100) {
+        this.attack = attack;
+        this.hp = hp;
+      }
+      get battlePoint() {
+        return this.attack + this.hp;
+      }
+      set heal(addHp) {
+        this.hp += addHp;
+      }
+    }
+
+    let unit1 = new Unit();
+
+    let data = {
+      odd: [],
+      even: [],
+      //rest parameter로 몇개의 arguments가 들어오든 하나의 배열로 바꾸기
+      addNum(...arr) {
+        for (let e of arr) {
+          if (e % 2 === 0) {
+            this.even.push(e);
+          } else {
+            this.odd.push(e);
+          }
+        }
+      },
+      arrangeNum() {
+        this.odd.sort((a, b) => a - b);
+        this.even.sort((a, b) => a - b);
+        return { odd: this.odd, even: this.even };
+      },
+    };
+  </script>
+</html>
