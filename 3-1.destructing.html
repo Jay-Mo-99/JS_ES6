@@ -23,6 +23,9 @@
     let obj = { age: 25 };
     let { name: engName = "Jane", age } = obj;
 
+    let obj4 = { age4: 17 };
+    let { name4 = "BB", age4: realAge, country4: realCountry = "CAD" } = obj4;
+
     //변수들을 obj에 집어넣을 경우
     let color = "red";
     let size = "S";
@@ -38,5 +41,18 @@
     }
     let obj3 = { city: "Toronto", country: "Canada" };
     display(obj3);
+
+    function fashion({ brand: newBrand = "Tommy Hilfiger", colour = "navy" }) {
+      console.log({ newBrand, colour: colour });
+    }
+    let shirt = { brand: "Lacoste" };
+    fashion(shirt);
+
+    function displayArr([first, second, third = 30]) {
+      console.log(first); //10
+      console.log(third); //30
+    }
+
+    displayArr([10, 20]);
   </script>
 </html>
