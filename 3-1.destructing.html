@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //Array Destructing : 배열을 분해해서 각각의 변수에 할당
+    let arr = [2, 3, 4, 5];
+    let [a, b, c, d] = arr;
+
+    let arr2 = [100, 200];
+    let [x, y, z = 300] = arr2; //Define the default value
+    let [m, l] = []; //undefined
+
+    //Object Destructuring : 객체를 분해해서 각각의 변수에 할당
+    // - key값과 변수명이 동일해야함
+    // - 변수명 변경가능 (using ":")
+    // - default value 설정 가능
+
+    let obj = { age: 25 };
+    let { name: engName = "Jane", age } = obj;
+
+    //변수들을 obj에 집어넣을 경우
+    let color = "red";
+    let size = "S";
+    let obj2 = { color, size };
+
+    //Destructing in function parameters
+    //Function's parameters are a special type of local variable
+    //obj 사용시 key값과 변수명이 동일해야함
+
+    function display({ city, country }) {
+      console.log(city);
+      console.log(country);
+    }
+    let obj3 = { city: "Toronto", country: "Canada" };
+    display(obj3);
+  </script>
+</html>
