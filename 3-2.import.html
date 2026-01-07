@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script type="module">
+    //import { apple, banana } from "/library.js"; //Rename is impossible in export
+    //import coconut, { a as apple, b } from "/library.js"; //export default가 먼저고 export 는 나중에
+    //import coconut from "/library.js"; //Rename is possible for default export
+
+    import { a, b as banana } from "./library.js";
+
+    import myFavorite from "/library.js"; //import default
+    //* 로 모두 불러오기 가능
+    //* 로 불러와서 특정 요소만 사용시 * as 별칭 사용
+    //export default는 * as 로 불러올 수 없음
+
+    // console.log(everything.a); //apple
+    // //console.log(everything.c) //undefined
+    console.log(myFavorite); //coconut
+    console.log(banana);
+  </script>
+</html>
