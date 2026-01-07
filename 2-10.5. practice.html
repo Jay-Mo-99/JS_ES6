@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    class Character {
+      constructor(name, level = 1, hp = 100, str = 5) {
+        this.name = name;
+        this.level = level;
+        this.hp = hp;
+        this.str = str;
+      }
+      get status() {
+        return `${this.name} (LV.${this.level}) - HP: ${this.hp}, STR: ${this.str}`;
+      }
+      set heal(addHp) {
+        this.hp += parseFloat(addHp);
+      }
+    }
+    class Mage extends Character {
+      constructor(name, level = 1, hp = 100, str = 5, mp = 100) {
+        super(name, level, hp, str);
+        this.mp = mp;
+      }
+      get status() {
+        return `${this.name} (Mage Lv.${this.level}) - HP: ${this.hp}, STR: ${this.str}, MP: ${this.mp}`;
+      }
+    }
+
+    class Warrior extends Character {
+      constructor(name, level = 1, hp = 100, str = 5, rage = 0) {
+        super(name, level, hp, str);
+        this.rage = rage;
+      }
+      get status() {
+        return `${super.status}, Rage:${this.rage}`;
+      }
+      get battlePower() {
+        return `Battle Power: ${this.str * 2 + this.rage}`;
+      }
+      set provoke(addRage) {
+        this.rage += parseInt(addRage);
+      }
+    }
+
+    let mage1 = new Mage("Gandalf");
+    console.log(mage1.status);
+
+    let warrior1 = new Warrior("Conan");
+    console.log(warrior1.status);
+  </script>
+</html>
