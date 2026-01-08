@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Stack/Queue/Event Loop Visualizer</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #1e1e1e;
+        color: #f8f8f2;
+        padding: 30px;
+      }
+      h1 {
+        color: #61dafb;
+      }
+      .container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+      }
+      .box {
+        border: 1px solid #888;
+        padding: 15px;
+        width: 200px;
+        min-height: 200px;
+        background: #2e2e2e;
+      }
+      .box h2 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+        color: #ffd700;
+      }
+      .item {
+        background: #444;
+        padding: 5px 10px;
+        margin-bottom: 5px;
+        border-left: 5px solid #61dafb;
+      }
+      #log {
+        margin-top: 30px;
+        background: #111;
+        padding: 10px;
+        height: 150px;
+        overflow-y: auto;
+        font-family: monospace;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px 15px;
+        background: #61dafb;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🔄 JS 실행 시각화 (Stack / Queue / WebAPI)</h1>
+
+    <div class="container">
+      <div class="box" id="heap"><h2>Heap</h2></div>
+      <div class="box" id="stack"><h2>Call Stack</h2></div>
+      <div class="box" id="webapi"><h2>Web API</h2></div>
+      <div class="box" id="queue"><h2>Callback Queue</h2></div>
+    </div>
+
+    <button onclick="runSimulation()">▶️ Run JS Simulation</button>
+
+    <div id="log"></div>
+
+    <script>
+      const stack = document.getElementById("stack");
+      const heap = document.getElementById("heap");
+      const webapi = document.getElementById("webapi");
+      const queue = document.getElementById("queue");
+      const log = document.getElementById("log");
+
+      function addItem(container, text) {
+        const el = document.createElement("div");
+        el.className = "item";
+        el.innerText = text;
+        container.prepend(el);
+      }
+
+      function logLine(msg) {
+        log.innerHTML += msg + "<br>";
+        log.scrollTop = log.scrollHeight;
+      }
+
+      async function runSimulation() {
+        stack.innerHTML = "<h2>Call Stack</h2>";
+        heap.innerHTML = "<h2>Heap</h2>";
+        webapi.innerHTML = "<h2>Web API</h2>";
+        queue.innerHTML = "<h2>Callback Queue</h2>";
+        log.innerHTML = "";
+
+        addItem(heap, "let x = 1");
+
+        await step("console.log(1+1)", "Stack", stack);
+        logLine("출력: 2");
+
+        await step("setTimeout(fn)", "Stack", stack);
+        await step("setTimeout(fn)", "WebAPI", webapi);
+        await step("console.log(3+3)", "Stack", stack);
+        logLine("출력: 6");
+
+        await step("WebAPI → Queue", "Callback Queue", queue);
+        await step("Queue → Stack", "Stack", stack);
+        logLine("출력: 4");
+      }
+
+      function step(msg, target, container) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            addItem(container, msg);
+            resolve();
+          }, 1000);
+        });
+      }
+    </script>
+  </body>
+</html>
