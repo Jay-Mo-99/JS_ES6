@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ✅ jQuery 로드 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body></body>
+
+  <script>
+    let promise = new Promise(function (resolve, reject) {
+      //먼저 호출된 것만 Promise의 상태를 바꾼다.
+      //resolve(); //Promise내부에서 resolve 호출시 then실행
+      //reject(); //Promise내부에서 reject호출시 catch실행
+      let calcluate = 1 + 1;
+      //resolve(calcluate); //parameter로 then,catch,finally 에 전할수있다.
+
+      setTimeout(() => {
+        resolve("After 1 second");
+      }, 5000);
+    }); //성공 실패 판정 기계
+    //Promise의 3가지 상태
+    //판정대기(pending) -> 성공(fulfilled) or 실패(rejected)
+
+    //Promise의 장점
+    //콜백함수보다 더 기능이 많다.
+    //여러개의 동작을 보기 쉽게 표현할수 있다.
+    //성공했을때 then, 실패했을때 catch 실행, finally 무조건 실행
+
+    //promise는 보통 setTimeou, 서버요청, 파일읽기 등 시간이 걸리는 작업에 사용
+    //복잡한 callback함수를 깔끔하게 사용가능
+    //성공/실패 경우에 맞춰서 각각 다른 코드 실행 가능하다 -> 디자인패턴
+    //Promise로 직접 비동기처리를 만드는거X, 비동기 작업의 결과를 다루는 콜백디자인패턴
+    promise
+      .then(function (result) {
+        console.log("Success: ", result);
+      })
+      .catch(function () {
+        console.log("Fail");
+      })
+      .finally(function () {
+        console.log("Done whenever success or fail");
+      });
+
+    //promise가 이미 적용된 곳들
+    //fetch() -> promise 가 적용된 브라우저 네이티브 API
+    //jQuery.ajax() -> promise처럼 작도하는 jQuery.Deferred 자체구현
+    //$.ajax().done(function () {});
+    $.ajax({
+      url: "https://jsonplaceholder.typicode.com/posts/1",
+      method: "GET",
+      success: function (data) {
+        console.log("AJAX 성공:", data);
+      },
+      error: function (err) {
+        console.error("AJAX 실패:", err);
+      },
+    });
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.json(); // ✅ 여기가 핵심
+      })
+      .then((data) => {
+        console.log(data); // ✅ 이제 진짜 데이터 나옴!
+      })
+      .catch((error) => {
+        console.log("Failed to fetch:", error);
+      });
+  </script>
+</html>
