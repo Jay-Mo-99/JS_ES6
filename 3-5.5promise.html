@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img id="testImage" src="https://codingapple1.github.io/kona.jpg" />
+  </body>
+  <script>
+    let promise = new Promise(function (fulfilled, rejected) {
+      let img = document.getElementById("testImage");
+      img.addEventListener("load", function () {
+        fulfilled("Image Loaded Success");
+      });
+      img.addEventListener("error", function () {
+        rejected("Image Load Failed");
+      });
+    });
+
+    promise
+      .then(function (result) {
+        console.log(result);
+      })
+      .catch(function (result) {
+        console.log(result);
+      });
+  </script>
+</html>
