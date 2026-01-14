@@ -18,9 +18,25 @@
         });
     });
 
+    //Promise Channing
+    //then 내부에 return 이후 then을 쓰면 다음 then은 return값을 가져온다
+    //return 값이 없으면 channing 유지, undefined 전달
+
+    //Promise Channing의 쓰임
+    //비동기 작업을 순차적으로 처리 -> 가독성, 콜백지옥 해결
+    //이전 작업결과 다음 작업에 쉽게 넘김
     promise
       .then(function (result) {
         console.log("Success: ", result);
+        //ajax 두번째 호출 및 결과값 리턴
+        //return $.get("https://codingapple1.github.io/hello2.txt");
+      })
+      .then(function (result2) {
+        console.log("Second Success: ", result2);
+        //return $.get("https://codingapple1.github.io/hello2.txt");
+      })
+      .then(function (result3) {
+        console.log("Third Success: ", result3);
       })
       .catch(function (result) {
         console.log(result);
