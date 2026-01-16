@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //문제1
+    // async function add(a, b) {
+    //   let promise = new Promise(function (resolve, reject) {
+    //     if (typeof a !== "number" || typeof b !== "number") {
+    //       reject("Please enter numbers");
+    //     } else {
+    //       setTimeout(() => {
+    //         resolve(a + b); //fulfilled상황 정의
+    //       }, 1000);
+    //     }
+    //   });
+
+    //   try {
+    //     let result = await promise;
+    //     console.log("After Await: ", result);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+    // add(1, 2);
+    // add(1, "c");
+
+    //promise for awiat chaining
+    function proNameTime(name, time) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+          resolve(`Complete ${name}`);
+        }, time);
+      });
+    }
+    //await chaning
+    async function order() {
+      // let promiseA = proNameTime("A", 1000); // 바로 실행됨
+      // let promiseB = proNameTime("B", 2000); // 바로 실행됨
+      // let promiseC = proNameTime("C", 1000); // 바로 실행됨
+
+      // let resultA = await promiseA; // 1초 후 완료
+      // let resultB = await promiseB; // 2초 후 완료
+      // let resultC = await promiseC; // C는 이미 시작됐기 때문에 거의 즉시 나올 수 있음
+      let resultA = await proNameTime("A", 1000);
+      console.log(resultA);
+      let resultB = await proNameTime("B", 2000);
+      console.log(resultB);
+      let resultC = await proNameTime("C", 1000);
+      console.log(resultC);
+      console.log("Everything is ended up");
+    }
+    order();
+  </script>
+</html>
