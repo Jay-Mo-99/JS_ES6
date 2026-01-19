@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function delayLog(msg, time) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log(msg);
+          resolve();
+        }, time);
+      });
+    }
+
+    async function run() {
+      console.log("A");
+      delayLog("B", 0);
+      console.log("C");
+      await delayLog("D", 0);
+      console.log("E");
+    }
+
+    run();
+    console.log("F");
+  </script>
+</html>

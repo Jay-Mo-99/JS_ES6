@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // let promise = new Promise(function (resolve, reject) {
+    //   setTimeout(() => {
+    //     resolve("Hello World");
+    //   }, 3000);
+    // });
+
+    // promise.then(function (param) {
+    //   console.log(param);
+    // });
+
+    // async function hello(param) {
+    //   let result = await new Promise(function (resolve, reject) {
+    //     setTimeout(() => {
+    //       console.log(param);
+    //     }, 3000);
+    //   });
+    //   return result;
+    // }
+
+    // hello("Hello World");
+
+    //탕
+    // async function checkNumber(num) {
+    //   let promise = new Promise(function (resolve, reject) {
+    //     setTimeout(() => {
+    //       if (typeof num !== "number") {
+    //         reject("Please Enter Number");
+    //         return; //reject 이후 코드가 더이상 작동되지 않도록
+    //       }
+    //       if (num % 2 === 0) {
+    //         resolve("Even Number");
+    //       } else {
+    //         resolve("Odd Number");
+    //       }
+    //     }, 2000);
+    //   });
+
+    //   try {
+    //     let result = await promise;
+    //     console.log(result);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+
+    // checkNumber("c");
+    // checkNumber(2);
+
+    // function add(param1, param2) {
+    //   return new Promise(function (resolve, reject) {
+    //     let result1 = param1 + param2;
+    //     console.log("Result1: ", result1);
+    //     resolve(result1);
+    //   });
+    // }
+
+    // //여기서 호출 함수 호출 겸 then chainning
+    // add(1, 2)
+    //   .then(function (result1) {
+    //     let result2 = result1 + 3;
+    //     console.log("Result2: ", result2);
+    //     return result2;
+    //   })
+    //   .then(function (result2) {
+    //     let result3 = result2 + 4;
+    //     console.log("Final: ", result3);
+    //   });
+
+    // async function delay(ms, msg) {
+    //   try {
+    //     let result = await new Promise((resolve) => {
+    //       setTimeout(() => resolve(msg), ms);
+    //     });
+    //     return result;
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+    // const promise5 = new Promise(function (resolve, reject) {
+    //   return reject("Reject");
+    // });
+
+    // Promise.all([delay(1000, "Task1"), delay(1500, "Task2"), promise5])
+    //   .then((values) => {
+    //     console.log(values);
+    //     console.log("All Done!");
+    //   })
+    //   .catch((err) => console.log(err));
+
+    // async function randomTask() {
+    //   try {
+    //     let result = await new Promise((resolve, reject) => {
+    //       const isSuccess = Math.random() > 0.5;
+    //       setTimeout(() => {
+    //         isSuccess ? resolve("Success") : reject("Fail");
+    //       }, 1000);
+    //     });
+    //     console.log(result);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+
+    // setInterval(randomTask, 2000);
+    // //setIterval(randomTask(),2000)
+    // //randomTask가 바로실행 -> promise return값이 남음
+    // //setInterval(Promise { <pending> }, 2000); 로 인식하여 Unexpected identifier 'Promise'
+
+    function sleep(time) {
+      return new Promise((resolve) => setTimeout(resolve, time));
+    }
+    async function fetchData1() {
+      try {
+        let result = await fetch(
+          "https://jsonplaceholder.typicode.com/todos/1",
+        );
+        let data = await result.json();
+        // setTimeout(() => {
+        //   console.log("Success1: ", data);
+        // }, 1000);
+        //setTimeout은 비동기작업
+        // Web API가 따로 담당하게 되고 바로 return data로 넘어가게 됨
+        await sleep(1000);
+        console.log("Success1: ", data);
+        return data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    async function fetchData2() {
+      try {
+        let result = await fetch(
+          "https://jsonplaceholder.typicode.com/todos/1",
+        );
+        let data = await result.json();
+        // setTimeout(() => {
+        //   console.log("Success2: ", data);
+        // }, 2000);
+        await sleep(2000);
+        console.log("Success2: ", data);
+        return data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    Promise.all([fetchData1(), fetchData2()])
+      .then((res) => {
+        console.log("All Data: ", res);
+      })
+      .catch((err) => {
+        console.log("Error in ALL: ", err);
+      });
+  </script>
+</html>

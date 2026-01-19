@@ -1,14 +1,12 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Open 2-9.getterSetter.html",
-            "file": "c:\\MyFiles\\myCoding\\codingApple\\codingApple-jsES6\\assets\\2-9.getterSetter.html"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Live Server 디버깅",
+      "url": "http://127.0.0.1:8080", // ✅ Live Server 포트
+      "webRoot": "${workspaceFolder}" // ✅ 현재 프로젝트 루트
+    }
+  ]
 }
