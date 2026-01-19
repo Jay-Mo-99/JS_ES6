@@ -47,8 +47,38 @@
     let table = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     for (let i of table) {
       for (let j of table) {
-        console.log(i, "x", j, ": ", i * j);
+        console.log(`${i}x${j}: ${i * j}`);
       }
+    }
+
+    //Example2
+    var products = [
+      {
+        name1: "chair",
+        price1: 7000,
+      },
+      {
+        name2: "sofa",
+        price: 5000,
+      },
+      {
+        name1: "desk",
+        price3: 9000,
+      },
+    ];
+
+    let newName = "name";
+    let newPrice = "price";
+    const hasNumber = /\d/;
+    for (let p of products) {
+      for (let key of Object.keys(p)) {
+        if (hasNumber.test(key)) {
+          let newKey = key.slice(0, -1);
+          p[newKey] = p[key];
+          delete p[key];
+        }
+      }
+      console.log(p);
     }
   </script>
 </html>
