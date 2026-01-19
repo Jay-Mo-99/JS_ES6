@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="test">Test1</div>
+    <div class="test">Test2</div>
+    <div class="test">Test3</div>
+  </body>
+  <script>
+    //****object -> for in
+    //enumerable한 데이터만 반복
+    //- name:"Emma" 이외의 여러 정보가 포함
+
+    class Parents {}
+    Parents.prototype.name = "Lee";
+    let obj = new Parents();
+    for (let key in obj) {
+      console.log(obj[key]); //Lee가 나온다
+      //for in 반복문의 특징2
+      //부모의 prototype을 반복해준다.
+      if (obj.hasOwnProperty(key)) {
+        //정확히 나의 속성만 반복시키고 싶다면
+        console.log(obj[key]);
+      }
+    }
+
+    //for of -> Array, string, arguments, NodeList, Map, Set
+    //iterable 자료형에 사용가능 -> [Symbol.iterator] 로 검증 가능하면 Iterable 자료형
+    let arr = [0, 1, 2, 3, 4];
+    for (let val of "IAMSTRING") {
+      console.log(val);
+    }
+    arr[Symbol.iterator]();
+
+    //아래 작업들은 작업 후 htmlcollection이나 NodeList가 나오며 그것 역시 iterable하여 for of사용가능
+
+    let classTest = document.getElementsByClassName("test"); //HTMLCollection(3) [div.test, div.test, div.test]
+    let queryTest = document.querySelectorAll(".test"); //NodeList(3) [div.test, div.test, div.test]
+    for (e of queryTest) {
+      console.log(e);
+    }
+
+    let table = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    for (let i of table) {
+      for (let j of table) {
+        console.log(i, "x", j, ": ", i * j);
+      }
+    }
+  </script>
+</html>
