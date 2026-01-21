@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //**map
+    //- 자료간의 연관성 표현을 위해 쓴다
+    //- key-value 값으로 다양한 데이터 타입을 쓸수 있다
+    //- 자료간의 의존성, 수학 mapping연산 등에 사용
+    let person = new Map();
+    let pet = new Array();
+
+    person.set([1, 2, 3], "Kim");
+    person.set("age", 25);
+    //person.get("age"); //25
+
+    for (let key of person.keys()) {
+      console.log(`${key}: ${person[key]}`);
+    }
+
+    for (let val of person.values()) {
+      console.log(val);
+    }
+    let fruits = new Map();
+    fruits.set([1, 2, 3], "apple");
+    fruits.set("colour", "red");
+    fruits.get("colour"); //red
+
+    //Map에 직접 자료 넣는법
+    let fruits2 = new Map([
+      ["name", "banana"],
+      ["colour", "yellow"],
+    ]);
+
+    //***set
+    //- 중복자료를 허용하지 않는 data type
+    //- array, string, number의 중복 제거 가능
+    //- object는 key-value 형태라 value만 저장하는 set으로 직접변환X 비교기준추출로 가능
+
+    let coffee = ["Americano", "Latte", "Mocka", "Latte"];
+    let coffee2 = new Set(coffee); //{"Americano", "Latte", "Mocka"}
+    coffee2.add("Espresso");
+    coffee2.delete("Mocka");
+    coffee2.size; //3
+
+    //set도 iterable하여 for of 사용 가능
+    //set은 입력순서를 기억하고 for...of, spread, Array.from()도 입력순서로 나온다
+    //하지만 인덱스는 없다.
+    //객체 기반 key-value를 안쓰고 내부적으로 값만 저장후 순서만 유지
+    for (let e of coffee2) {
+      console.log(e);
+    }
+
+    //set은 array의 중복자료를 한번에 제거해서 간편
+    //하지만 array와 다르게 {} 자료형 -> 인덱스 사용 불가
+    //따라서 set -> spread operator로 다시 array -> 중복제거 array
+
+    coffee = [...coffee2];
+  </script>
+</html>
