@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body class="flex justify-center">
+    <custom-button
+      label="sixth"
+      class="p-2 m-2 bg-green-200 text-green-800 rounded-md"
+    ></custom-button>
+  </body>
+  <script>
+    class className extends HTMLElement {
+      connectedCallback() {
+        let label = this.getAttribute("label");
+        this.innerHTML = `<label>${label}</label><button class="bg-pink-200 text-pink-800 m-2 p-1 rounded-md">${label}</button>`;
+      }
+
+      //label attribute 추적
+      static get observedAttributes() {
+        return ["label"];
+      }
+      //label attribute바뀔떄마다 해당 동작 작동
+      attributeChangedCallback() {
+        let label = this.getAttribute("label");
+        this.innerHTML = `<label>${label}</label><button class="bg-pink-200 text-pink-800 m-2 p-1 rounded-md">${label}</button>`;
+      }
+    }
+
+    customElements.define("custom-button", className);
+  </script>
+</html>
