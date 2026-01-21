@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 목표: for...in으로 안 보이는 비밀 키를 Symbol로 추가해보기
+    const user = {
+      name: "Alice",
+      age: 30,
+    };
+
+    // 여기에 비밀키 "isAdmin"을 Symbol로 추가
+    // user[???] = true;
+    let isAdmin = Symbol("isAdmin");
+
+    user[isAdmin] = true;
+
+    for (let e in user) {
+      console.log(`${e}: ${user[e]}`);
+    }
+    console.log(Object.getOwnPropertySymbols(user));
+
+    // 🔍 그 다음: for...in 돌려도 안 보여야 함
+    // 🔍 Object.getOwnPropertySymbols(user)로 확인 가능
+  </script>
+</html>
