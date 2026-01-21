@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body class="flex justify-center">
+    <custom-input
+      name="ID"
+      class="m-2 p-2 bg-red-200 text-red-800"
+    ></custom-input>
+    <custom-input
+      name="pwd"
+      class="m-2 p-2 bg-yellow-200 text-yellow-800"
+    ></custom-input>
+  </body>
+  <script>
+    //**Custom tag
+    //- 길고 복잡한 HTML 축약 가능
+    //- html 중복제거, 다른 페이지에서 재활용가능
+    //- Web Components 기능으로 HTML 도 함수처럼 사용가능
+    //- JS외부 라이브러리 : Lit, Stencil 등
+    class className extends HTMLElement {
+      connectedCallback() {
+        // createElement로 생성하면 html 요소 생성 속도가 빨라짐
+        // let label = document.createElement("label");
+        // this.appendChild(label)
+        let name = this.getAttribute("name");
+        this.innerHTML = `<label class="p-5">Custom Input for ${name}</label><input>`;
+      }
+      //name attribute의 변화를 감지해주세요
+      static get observedAttributes() {
+        return ["name"];
+      }
+      //바뀔시 이거 실행해줘요
+      attributeChangedCallback() {
+        console.log(`Changed: ${this.getAttribute("name")}`);
+
+        //React와 Vue의 재렌더링 구현
+        this.innerHTML = `<label class="p-5">Custom Input for ${name}</label><input>`; //HTML 재렌더링
+      }
+    }
+    customElements.define("custom-input", className);
+  </script>
+</html>
