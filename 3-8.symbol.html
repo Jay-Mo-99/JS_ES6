@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //**Symbol
+    //-object의 비밀스러운 key값
+    //- import해온 파일, 라이브러리 사용할떄 거기 있던 object에 자료를 추가하고 싶어
+    //-> symbol사용하면 반복문에도 뜨지 않고 기존의 코드를 해칠 염려가 없어.
+
+    //**Symbol의 특징
+    //1. 설명이 같다고 같은 symbol이 아님 -> symbol이 만들어질때마다 유니크한 symbol이 생김
+    //2. Symbol.for(''): 전역변수처럼 생성 가능 -> height === height2 //true
+
+    let weight = Symbol("Real Weight");
+    let weight2 = Symbol("Real Weight");
+    let height = Symbol.for("Real Height");
+    let height2 = Symbol.for("Real Height");
+    let arr = [1, 2, 3, 4]; //arr[Symbol.iterator] -> JS 내장 기본 symbol
+    //symbol은 존재하지만 반복문에서 나타나지 않는다.
+
+    let obj = { name: "Adam", age: 19, [height]: 179 };
+    obj.weight = 80; //public, everyone can apporach this key-value
+    obj[weight] = 100;
+
+    for (let key in obj) {
+      console.log(`${key}: ${obj[key]}`);
+
+      //name: Adam
+      //age: 19
+      //weight: 80
+      //Symbol key는 enumerable 하지 않아서 for in 반복문에 나오지 않는다
+    }
+  </script>
+</html>
