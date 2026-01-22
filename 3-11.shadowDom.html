@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!--Shadow DOM: 
+    1, HTML 태그를 숨겨놓을수 있다. (실제 input range 에도 여러개의 tag가 합쳐져있다) 
+    2. style css를 외부와 영향 주고받지 않고 관리가능 -> 모듈화
+    -- -->
+    <!-- <input type="range" /> -->
+    <div id="mordor" class="bg-red-200 text-red-800"></div>
+    <template id="template1">
+      <label>Enter your email</label>
+      <style>
+        label {
+          color: red;
+        }
+      </style> </template
+    ><!-- HTML임시 보관-->
+    <custom-input name="ID" class="m-2 p-2"></custom-input>
+  </body>
+  <script>
+    class className extends HTMLElement {
+      connectedCallback() {
+        // createElement로 생성하면 html 요소 생성 속도가 빨라짐
+        // let label = document.createElement("label");
+        // this.appendChild(label)
+        let name = this.getAttribute("name");
+        this.innerHTML = `<label class="p-5">Custom Input for ${name}</label><input>`;
+        this.shadowRoot.append(template1.content.cloneNode(true));
+      }
+      //name attribute의 변화를 감지해주세요
+      static get observedAttributes() {
+        return ["name"];
+      }
+      //바뀔시 이거 실행해줘요
+      attributeChangedCallback() {
+        console.log(`Changed: ${this.getAttribute("name")}`);
+
+        //React와 Vue의 재렌더링 구현
+        this.innerHTML = `<label class="p-5">Custom Input for ${name}</label><input>`; //HTML 재렌더링
+      }
+    }
+    customElements.define("custom-input", className);
+    document.querySelector("#mordor").attachShadow({ mode: "open" });
+    document.querySelector("#mordor").shadowRoot.innerHTML =
+      `<p>I am in the shadowRoot</p>`;
+  </script>
+</html>
