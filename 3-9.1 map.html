@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let user1 = { name: "Kim" };
+    let user2 = { name: "Lee" };
+
+    let userMap = new Map();
+    userMap.set(user1, true);
+    userMap.set(user2, false);
+
+    for (let u of userMap) {
+      console.log(u);
+    }
+  </script>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const users = [
+      { name: "Alice", age: 20 },
+      { name: "Bob", age: 25 },
+      { name: "Alice", age: 30 },
+      { name: "Charlie", age: 22 },
+    ];
+    let names = [];
+    for (let e of users) {
+      names.push(e[Object.keys(e)[0]]);
+    }
+    let set = new Set(names); //set 추출
+    let result = [];
+    for (let user of users) {
+      if (set.has(user.name)) {
+        result.push(user);
+        set.delete(user.name);
+      }
+    }
+    console.log(result);
+  </script>
+</html>
