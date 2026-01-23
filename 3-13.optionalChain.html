@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body class="flex justify-center">
+    <div id="a" class="bg-red-200 text-red-800 p-2 m-2"></div>
+  </body>
+  <script>
+    // let user = {
+    //   //name: "Lee",
+    //   //age: { value: 17 },
+    //   sayHi() {
+    //     console.log(`Hi, I am ${this.name}`);
+    //   },
+    // };
+
+    // //console.log(user.name); //.이 하나일떄 이미 자동으로 undefined return
+    // console.log(user.age?.value);
+    // console.log(user.age?.value ?? "Loading...");
+    // user.sayHi?.();
+    // user.sayBye?.(); //에러 대신 아무일도 x
+    // //Optional Chain
+    // //.이 두개 이상인 중첩자료일떄 왼쪽이 null, undefined 면 에러대신 undefined를 남겨줌
+    // //user.age.value 처럼 .이 두개 이상일땐 그 자료가 없으면 에러발생
+
+    //.이 두개 이상인 중첩자료에 ?? 를 넣고 "mesesage" 작성하면 에러 대신 message출력
+    document.querySelector("#a").innerHTML = "I am A";
+    //.왼쪽에 착오발생시 에러가 아닌 undefined처리
+
+    //Practical
+    const users = [
+      {
+        name: "Alice",
+        profile: {
+          age: 25,
+          location: "Seoul",
+        },
+        sayHi() {
+          console.log("Hi, I'm Alice");
+        },
+      },
+      {
+        name: "Bob",
+        // profile 없음
+      },
+      {
+        // name 없음
+        profile: {
+          age: 32,
+        },
+      },
+    ];
+
+    for (let e of users) {
+      console.log(e?.name ?? "No Name");
+      console.log(e.profile?.age ?? "Age Unknown");
+      e.sayHi?.();
+    }
+  </script>
+</html>
