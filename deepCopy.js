@@ -16,11 +16,10 @@ function deepCopy(param) {
   //recursively call deepCopy on each value and assign it to newObj
 
   let newObj = {};
-  if (typeof param === "object") {
-    for (let key in param) {
-      newObj[key] = deepCopy(param[key]);
-    }
+  for (let key in param) {
+    newObj[key] = deepCopy(param[key]);
   }
+
   return newObj;
 }
 
